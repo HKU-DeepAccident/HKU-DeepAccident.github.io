@@ -5,4 +5,4 @@ Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-modern
 Author: BootstrapMade.com
 License: https://bootstrapmade.com/license/
 
-We also thank the ONCE dataste for contribution in the designing.
+We also thank the ONCE dataset for contribution in the designing.
