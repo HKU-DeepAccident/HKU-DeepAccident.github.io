@@ -129,10 +129,7 @@ navigation_header:
   url: /Download/
 - title: Terms of Use
   url: /Terms_of_Use/
-- title: Search
-  url: /search/
-- title: Fork Alembic
-  url: https://github.com/daviddarnes/alembic
+
 
 navigation_footer:
 - title: Created by David Darnes
