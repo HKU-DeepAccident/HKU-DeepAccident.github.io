@@ -83,74 +83,26 @@
                 <div class="container">
                     <div class="row aos-init aos-animate" data-aos="fade-up"></div>               
                     <span class="anchor" id="data_format"></span>
-                    <h3><b>Data Format</b></h3>
-                    <p class="doc-title-1">Coordinate systems</p>
-                    <p>There are 3 types of coordinate systems on the ONCE dataset, i.e., the LiDAR coordinate, the camera coordinates, and the image coordinate. The LiDAR coordinate is placed at the center of the LiDAR sensor, with x positive to the left, y-axis positive to the back and the z-axis positive upwards. We additionally provide a transformation matrix (vehicle pose) between each two adjacent LiDAR coordinates, which enables the fusion of multiple point clouds. The cameracoordinates are placed at the center of the lens respectively, with the x-y plane parallel to the image plane and the z-axis positive forwards. The camera coordinates can be transformed to the LiDAR coordinate directly using the respective camera extrinsics. The image coordinate is a 2D coordinate system where the origin is at the top-left of the image, and the x-axis and the y-axis are along the image width and height respectively. The camera intrinsics enable the projection from the camera coordinate to the image coordinate.</p>
-                    <p class="doc-title-1">LiDAR data</p>
-                    <p>The original LiDAR data is recorded at a speed of 10 frames per second (FPS). We further downsample those original data with the sampling rate of 2 FPS, since most adjacent frames are quite similar thus redundant. The downsampled data is then transformed into 3D point clouds, resulting in 1 million point clouds, i.e., scenes in total. Each point cloud is represented as an NX4 matrix, where N is the number of points in this scene, and each point is a 4-dim vector (x, y, z, r). The 3D coordinate (x, y, z) is based on the LiDAR coordinate, and r denotes the reflection intensity. The point clouds are stored into separate binary files for each scene and can be easily read by users.</p>
-                    <p class="doc-title-1">Camera data</p>
-                    <p>The camera data is also downsampled along with the LiDAR data for synchronization, and then the distortions are removed to enhance the quality of the images. We finally provide JPEG compressed images for all the cameras, resulting in 7 million images in total.</p>
+                    <h3><b>Work in Process</b></h3>
+                    <p class="doc-title-1">Work in Process</p>
+                    <p>Work in Process</p>
 
-                    <div class="col-md-7 order-2 order-md-1 pt-5"></div>
-                    <span class="anchor" id="data_annotation"></span>
-                    <h3><b>Data Annotation</b></h3>
-                    <p class="doc-title-2">Annotation</p>
-                    <p>We select 16k most representative scenes from the dataset, and exhaustively annotate all the 3D bounding boxes of 5 categories: car, bus, truck, pedestrian and cyclist. Each bounding box is a 3D cuboid and can be represented as a 7-dim vector: (cx, cy, cz, l, w, h, θ), where (cx, cy, cz) is the center of the cuboid on the LiDAR coordinate, (l, w, h) denotes length, width, height, and θ is the yaw angle of the cuboid. We provide 2D bounding boxes by projecting 3D boxes on image planes.</p>
-                    <p>Annotations of ONCE dataset consists three main parts: <span class="fst-italic">meta_info</span>, <span class="fst-italic">calib</span> and <span class="fst-italic">frames</span>.</p>
-
-                    <p class="doc-title-2">meta_info</p>
-                    <p><span class="fst-italic">meta_info</span> contains basic information about the collecting circumstance and collecting data.</p>
-                    <pre class="doc-code"><code>"meta_info": {
-    "weather":              < str >   -- ["sunny"|"cloudy"|"rainy"].
-    "period":               < str >   -- ["morning"|"noon"|"afternoon"|"night"].
-    "image_size":           < list >  -- (image_width, image_height)
-    "point_feature_num":    < int >   -- features of point cloud.
-}</code></pre>
-                    <p class="doc-title-2">calib</p>
-                    <p><span class="fst-italic">calib</span> contains calibration matrices for all seven cameras.</p>
-                    <pre class="doc-code"><code>"calib": {
-    "cam0[1|3|5|6|7|8]: {
-        "cam_to_velo":      < list of list > -- 4 x 4 transation matrix from camera coordinate to lidar coordinate.
-        "cam_intrinsic":    < list of list > -- 3 x 3 intrinsic matrix for camera.
-        "distortion":       < list >         -- 1 x 7 distortion matrix for camera. 
-}</code></pre>
-                    <p class="doc-title-2">frames</p>
-                    <p><span class="fst-italic">frames</span> is a list contains information for all frames in each scene, including <span class="fst-italic">sequence_id</span>, <span class="fst-italic">frame_id</span>, relative <span class="fst-italic">pose</span> to the first frame of the scene and <span class="fst-italic">annos</span> for labeled data</p>
-                    <pre class="doc-code"><code>"frames": [{
-    "sequence_id":          < str >   -- sequence id of the scene.
-    "frame_id":             < str >   -- timestamp of the frame.
-    "pose":                 < list >  -- (quat_x, quat_y, quat_z, quat_w, trans_x, trans_y, trans_z).
-    "annos":                < list >  -- 3D and 2D annotations for each objects appear in this frame, detailed description in frame annotation section.
-}]</code></pre> 
-                    <p class="doc-title-2">frame annotations</p>
-                    <p><span class="fst-italic">frame annotations</span> contains the annotation in one scene, including <span class="fst-italic">object name</span>, <span class="fst-italic">3D box</span>, <span class="fst-italic">2D box</span> and <span class="fst-italic">num points in gt</span>.
-                    <pre class="doc-code"><code>"annos": [{
-    "name":                 < list >  -- list of object names ['Car'|'Truck'|'Bus'|'Pedestrian'|'Cyclist'].
-    "boxes_3d":             < list of list > -- N x 7 bounding box for each object, (cx, cy, cz, l, w, h, θ).
-    "boxes_2d":             < dict >  -- conatins 2D project bounding box (xmin, ymin, xmax, ymax) for each object in each camera, (-1., -1., -1., -1) otherwise.
-    "num_points_in_gt":     < list >  -- list of number indicating point cloud numbers in each object 3D bounding box
-}]</code></pre>
-                    <div class="col-md-7 order-2 order-md-1 pt-5"></div>
-                    <span class="anchor" id="data_toolkits"></span>
-                    <h3><b>Data Toolkits</b></h3>
-                    <p><a href="https://github.com/once-for-auto-driving/once_devkit">Link for ONCE toolkit</a></p>
-                    <p><a href="https://github.com/PointsCoder/Once_Benchmark">PointsCoder</a> also provides a reproduction of the ONCE dataloader and experiments on github.</p>
                 </div>                 
             </section>          
         </main>      
-        <footer id="footer" data-aos-easing="ease-in-out" data-aos-duration="500"> 
-            <div class="container"> 
-                <div class="copyright"> 
-                    &copy; Copyright 
-                    <strong><span>HUAWEI</span></strong>. All Rights Reserved
-                </div>                 
-                <div class="credits"> 
-                    <!-- All the links in the footer should remain intact. -->                     
-                    <!-- You can delete the links only if you purchased the pro version. -->                     
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->                     
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->                     
-                    Designed by 
-                    <a href="https://bootstrapmade.com/">BootstrapMade</a> 
+        <footer id="footer" data-aos-easing="ease-in-out" data-aos-duration="500" class="aos-init">
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright
+                    <strong><span>the University of Hong Kong</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
+                    Designed by
+                    <a href="https://bootstrapmade.com/">BootstrapMade</a> and <a href="https://once-for-auto-driving.github.io/">Once</a>
                 </div>                 
             </div>             
         </footer>
