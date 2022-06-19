@@ -120,7 +120,22 @@
            Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.npz
 └─ego_vehicle_behind
 └─other_vehicle
-└─other_vehicle_behind</pre></p></div>
+└─other_vehicle_behind</pre></p>
+
+                <p class="doc-title-1">Motion data</p>
+                    <p>Our motion data is stored in compact tfrecords files same to Waymo motion dataset.
+                        Each of the tfrecords file contain at most 100 time-step samples (we separate the files using Town name and scenario type name,
+                        if a type of scenario in a town finishes, we will stop appending the current tfrecords file, thus, some tfrecords files have less than 100 samples contained).
+                        The content of each sample stored in tfrecords files can be accessed by different key names.
+                        We follow waymo motion dataset’s key names (https://waymo.com/open/data/motion/tfexample)
+                        but appending vehicle names to the beginning of each key name (e.g. state/current/x -> ego_vehicle/state/current/x) to differentiate the motion data collected by four data collection vehicles.
+                    <pre class="file_tree">data_root
+└─ego_vehicle
+    ├─Townxx_typex_subtypex_xxxxxx.tfrecords</pre>
+                    </p>
+
+
+                </div>
             </section>
         </main>
         <!-- End #main -->         
