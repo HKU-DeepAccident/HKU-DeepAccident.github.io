@@ -102,42 +102,25 @@
                     <p>We have four data collection vehicles for every time step.
                         Each of those vehicles contain a folder for sensor data and annotations, including ego_vehicle, ego_vehicle_behind, other_vehicle, other_vehicle_behind.
                     <pre class="file_tree">data_root
-└─3D_DATA
-    ├─3D_infos
-    │      train_infos.tar
-    │      val_infos.tar
-    │      test_infos.tar
-    │      raw_small_infos.tar
-    │      raw_medium_infos.tar
-    │      raw_large_infos.tar
-    ├─3D_images
-    │      train_cam0[1356789].tar
-    │      val_cam0[1356789].tar
-    │      test_cam0[1356789].tar
-    │      raw_cam01_p[0-9].tar
-    │      raw_cam03_p[0-9].tar
-    │      raw_cam05_p[0-9].tar
-    │      raw_cam06_p[0-9].tar
-    │      raw_cam07_p[0-9].tar
-    │      raw_cam08_p[0-9].tar
-    │      raw_cam09_p[0-9].tar
-    └─3D_lidars
-           train_lidar.tar
-           val_lidar.tar
-           test_lidar.tar
-           raw_lidar_p0.tar.parta*
-           raw_lidar_p1.tar.parta*
-           raw_lidar_p2.tar.parta*
-           raw_lidar_p3.tar.parta*
-           raw_lidar_p4.tar.parta*
-           raw_lidar_p5.tar.parta*
-           raw_lidar_p6.tar.parta*
-           raw_lidar_p7.tar.parta*
-           raw_lidar_p8.tar.parta*
-           raw_lidar_p9.tar.parta*</pre>
-                    </p>
-
-                </div>
+└─ego_vehicle
+    ├─camera01
+    │      Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.jpg
+    ├─camera02
+    ├─camera03
+    ├─camera04
+    ├─camera05
+    ├─camera06
+    └─lidar01
+           Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.npz
+    └─label
+           Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.txt
+    └─calib
+           Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.pkl
+    └─BEV_instance_camera
+           Townxx_typexxx_subtypexxxx_scenarioxxxxx_xxx.npz
+└─ego_vehicle_behind
+└─other_vehicle
+└─other_vehicle_behind</pre></p></div>
             </section>
         </main>
         <!-- End #main -->         
