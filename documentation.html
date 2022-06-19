@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+        <title>DeepAccident-Documentation</title>
+        <meta content="" name="description"> 
+        <meta content="" name="keywords"> 
+        <!-- Favicons -->         
+        <!-- <link href="assets/img/favicon.png" rel="icon">  -->
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> 
+        <!-- Google Fonts -->         
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet"> 
+        <!-- Vendor CSS Files -->         
+        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet"> 
+        <link href="assets/vendor/aos/aos.css" rel="stylesheet"> 
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> 
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> 
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> 
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> 
+        <!-- Template Main CSS File -->         
+        <link href="assets/css/style.css" rel="stylesheet"> 
+        <!-- =======================================================
+  * Template Name: Moderna - v4.2.0
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->         
+    </head>     
+    <body> 
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <h1 class="text-light" style="letter-spacing: 0px;"><a href="index.html"><span>Deep Accident</span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                </div>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li>
+                            <a class="active" href="index.html">Home</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="documentation.html"><span>Documentation</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="documentation.html">Documentation</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="download.html"><span>Download</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="download.html">Download</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="terms_of_use.html"><span>Terms of Use</span><i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="terms_of_use.html">Terms of Use</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav>
+                <!-- .navbar -->
+            </div>
+        </header>
+        <!-- End Header -->         
+        <main id="main"> 
+            <!-- ======= Our Services Section ======= -->             
+            <!-- End Our Services Section -->             
+            <!-- ======= Services Section ======= -->             
+            <section class="features"> 
+                <div class="container">
+                    <div class="row aos-init aos-animate" data-aos="fade-up"></div>               
+                    <span class="anchor" id="data_format"></span>
+                    <h3><b>Data Format</b></h3>
+                    <p class="doc-title-1">Sensor configuration</p>
+                    <p>Each of our four data collection vehicles has one 64-lane LiDAR mounted on top and six 1920x1080 resolution cameras installed to provide 360-degree field of view of the environment.
+                        Furthermore, we utilize CARLA’s in-built synchronous mode and our custom code to achieve perfect sensor synchronization in that all camera sensors will only be triggered
+                        when the LiDAR scans arrive at the front center of the vehicle.</p>
+
+                    <p class="doc-title-1">Coordinate system</p>
+                    <p>We have three types of coordinate systems in the DeepAccident dataset, including the world coordinate, vehicle coordinate and sensor coordinate.
+                        For the world and vehicle coordinate, it uses a Z-up left-handed system, with x positive forwards, y positive to the right, and z positive upwards.
+                        The sensor coordinates vary with different types of sensors. LiDAR's coordinate directions are consistent with the world and vehicle coordinates.
+                        For camera coordinates, x is positive to the right, y is positive downwards, and z is positive forwards.
+                        Further, the image coordinate plane is parallel to the camera x-y plane.
+                        We provide the intrinsic matrix in the dataset for each camera to enable the projection between the camera coordinate and the image coordinate.
+                        To enable the information fusion between different sensors, at each frame, we provide calibrated transformation matrix for each sensor with respect to the vehicle, thus enabling projection between sensors.
+                        Moreover, the transformation matrices between each data collection vehicle and the world coordinate are also provided to fuse information between vehicles, thus enabling cooperative autonomous driving.</p>
+
+                    <p class="doc-title-1">Sensor parameter</p>
+                    <p class="doc-title-2">Lidar</p>
+                    <p>The LiDAR sensor emulates the Velodyne HDL-64E LiDAR that has been used in many popular real-world datasets such as KITTI,
+                        which has 64 lanes, 120-meter range, [+2\degree, -24.8\degree] vertical field of view, and 10 Hz rotation frequency.</p>
+                    <p class="doc-title-2">RGB cameras</p>
+                    <p>For the six surrounding RGB cameras of each data collection vehicle, they are attached to the left front, front, right front,
+                        left rear, rear, right rear part of the vehicle with yaw rotation angles of -45\degree, 0\degree, 45\degree, -135\degree, 180\degree, 135\degree, respectively.
+                        The mounting heights for those cameras are all precisely 0.5m above the vehicle center, and each of the cameras has 90\degree~ field of view and 1920 x 1080 resolution,
+                        along with some post-processing effects provided in CARLA such as motion blur and light blooming to make the captured images more realistic.
+                        Moreover, we capture the camera images with 10 Hz frequency to align with the LiDAR sensor.</p>
+
+                    <p class="doc-title-1">Motion prediction task</p>
+                    <p class="doc-title-2">Overview</p>
+                    <p>We also record the motion of each object in our designed scenarios.
+                        The object types are identical to those we use in 3D object detection and tracking.
+                        We also provide a coarse object type, which considers cars, vans, and trucks all as vehicles.
+                        For the input data of motion prediction, we follow the settings in Waymo motion dataset,
+                        which provides the most detailed input information compared to other motion prediction datasets.
+                        This includes object motion, HD map information as well as the traffic light state of each driving lane.</p>
+                    <p class="doc-title-2">Contained information</p>
+                    <p>For object motion, at each time step, we record the position, yaw angle, size and velocity of the objects within 100-meter range of the data collection vehicle.
+                        For HD map, we provide the map information in a range that ensures the data collection vehicle gets 100-meter range of map at any time step.
+                        Each map point contains its position, direction, as well as type.
+                        We utilize the road types defined in the CARLA simulator, which has 21 types, including driving, biking, sidewalk, parking, etc.
+                        For the traffic light state, at each time step, we provide the traffic light state of each driving lane within 100-meter range of the data collection vehicle.</p>
+                    <p class="doc-title-2">Input and output time horizon</p>
+                    <p>Since the proposed DeepAccident dataset is designed for developing a better algorithm to detect or predict accident scenarios,
+                        and accidents normally happen within several seconds, we choose a shorter future period to predict (3 s) than the Waymo motion dataset (8 s).
+                        The input time period equals one-second history data plus motion data at the current time step. </p>
+                    <p class="doc-title-2">Relation to the perception data in the DeepAccident dataset</p>
+                    <p>The motion data part of the DeepAccident dataset uses the same accident reconstruction code to generate scenarios as the perception part.
+                        However, since the motion data does not contain any large-size raw sensor data file nor require the time-consuming rendering process in the simulator for LiDAR and RGB camera,
+                        we increase the total driving hours to 10 times of the perception data.</p>
+
+                    <h3><b>Data Annotation</b></h3>
+                    <p class="doc-title-1">WIP</p>
+                    <p>wip.</p>
+                </div>                 
+            </section>          
+        </main>      
+        <footer id="footer" data-aos-easing="ease-in-out" data-aos-duration="500" class="aos-init">
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright
+                    <strong><span>the University of Hong Kong</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
+                    Designed by
+                    <a href="https://bootstrapmade.com/">BootstrapMade</a> and <a href="https://once-for-auto-driving.github.io/">Once</a>
+                </div>                 
+            </div>             
+        </footer>
+        <!-- End Footer -->         
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> 
+        <!-- Vendor JS Files -->         
+        <script src="assets/vendor/aos/aos.js"></script>         
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>         
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>         
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>         
+        <script src="assets/vendor/php-email-form/validate.js"></script>         
+        <script src="assets/vendor/purecounter/purecounter.js"></script>         
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>         
+        <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>         
+        <!-- Template Main JS File -->         
+        <script src="assets/js/main.js"></script>         
+    </body>     
+</html>
